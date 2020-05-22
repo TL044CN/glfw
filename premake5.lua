@@ -1,18 +1,18 @@
 project "GLFW"
 	kind "StaticLib"
 	language "C"
-	targetdir ("bin/"..outputdir.."/%{proj.name}")
-	objdir ("bin-int/"..outputdir.."/%{proj.name}")
+	targetdir ("bin/"..outputdir.."/%{prj.name}")
+	objdir ("bin-int/"..outputdir.."/%{prj.name}")
 
 	files {
 		"include/GLFW/glfw3.h",
-		Â"include/GLFW/glfw3native.h",
+		"include/GLFW/glfw3native.h",
 		"src/glfw_config.h",
-		"src/context.c"
-		"src/init.c"
-		"src/input.c"
-		"src/monitor.c"
-		"src/vulkan.c"
+		"src/context.c",
+		"src/init.c",
+		"src/input.c",
+		"src/monitor.c",
+		"src/vulkan.c",
 		"src/window.c"
 	}
 
@@ -38,6 +38,9 @@ project "GLFW"
 			"_CRT_SECURE_NO_WARNINGS"
 		}
 
-	filter { "system:windows", "configuration:Release" }
+	filter { "system:windows", "configurations:Release" }
+		buildoptions "/MT"
+
+	filter { "system:windows", "configurations:Dist" }
 		buildoptions "/MT"
 
